@@ -14,6 +14,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+    res.send("Connect")
+})
+
 mongoose
     .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
@@ -42,6 +46,4 @@ app.use('/api/posts', postRoute)
 app.use('/api/categories', categoryRoute)
 app.use('/api/admin', adminRoute);
 
-app.listen('5000', () => {
-    console.log('Backend is running');
-})
+app.listen(process.env.PORT || 5000)
